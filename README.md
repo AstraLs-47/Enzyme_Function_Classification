@@ -33,34 +33,9 @@ The project uses the **SwissProt-EC** benchmark dataset loaded directly from Hug
 
 
 
-##  Pipeline Architecture & Notebook Structure
+##  Pipeline Architecture Detailed Breakdow
 
 The notebook (`enzyme_classification_colab.ipynb`) is structured into 17 clear, self-contained sections:
-
-```mermaid
-flowchart TD
-    A[Hugging Face Dataset: DanielHesslow/SwissProt-EC] --> B[Data Cleaning & Deduplication]
-    B --> C[Stratified Split: 70% Train / 15% Val / 15% Test]
-    C --> D[Feature Engineering: AAC + DPC + SVD Tripeptides]
-    D --> E[Feature Selection & Scaling: SelectKBest + StandardScaler]
-    E --> F1[Random Forest]
-    E --> F2[LightGBM]
-    E --> F3[Support Vector Machine - SVM]
-    F1 --> G1[Hard Voting]
-    F2 --> G1
-    F3 --> G1
-    F1 --> G2[Soft Voting]
-    F2 --> G2
-    F3 --> G2
-    F1 --> G3[Stacking Ensemble - Meta: Logistic Regression]
-    F2 --> G3
-    F3 --> G3
-    G1 --> H[Final Test Set Evaluation & Metrics]
-    G2 --> H
-    G3 --> H
-```
-
-### Detailed Breakdown:
 
 1. **Section 1 — Install & Import Libraries**
    - Installs `lightgbm` and `datasets`.
@@ -140,15 +115,3 @@ Running the notebook produces and saves several publication-quality figures:
 - `model_comparison.png`: Side-by-side performance comparison of base models vs. voting and stacking ensembles.
 
 ---
-
-## Dependencies
-
-- Python 3.9+
-- `datasets` (Hugging Face)
-- `lightgbm`
-- `scikit-learn`
-- `numpy`
-- `pandas`
-- `scipy`
-- `matplotlib`
-- `seaborn`
