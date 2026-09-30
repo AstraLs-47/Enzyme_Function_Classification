@@ -2,24 +2,19 @@
 
 A complete machine learning pipeline for predicting the primary Enzyme Commission (EC 1–6) classification of proteins directly from their amino-acid sequences using sequence-derived biochemical features and ensemble modeling.
 
----
-
 ##  Project Overview
 
 Enzymes are biological catalysts essential for metabolic and biochemical processes. The Enzyme Commission (EC) hierarchical numerical classification categorizes enzymes into six primary functional classes based on the chemical reactions they catalyze:
 
-| EC Class | Class Name | 
-|:---:|:---|:---|
-| **EC 1** | **Oxidoreductases** | 
-| **EC 2** | **Transferases** | 
-| **EC 3** | **Hydrolases** | 
-| **EC 4** | **Lyases** | 
-| **EC 5** | **Isomerases** | 
-| **EC 6** | **Ligases** | 
+The project classifies enzymes into the six primary Enzyme Commission (EC) classes:
+- EC 1: Oxidoreductases
+- EC 2: Transferases
+- EC 3: Hydrolases
+- EC 4: Lyases
+- EC 5: Isomerases
+- EC 6: Ligases
 
 The goal of this project is to build an end-to-end, reproducible classifier capable of accurately determining the top-level EC class from raw primary protein sequences.
-
----
 
 ##  Dataset
 
@@ -27,10 +22,7 @@ The project uses the **SwissProt-EC** benchmark dataset loaded directly from Hug
 - **Repository:** [`DanielHesslow/SwissProt-EC`](https://huggingface.co/datasets/DanielHesslow/SwissProt-EC)
 - **Data Source:** High-quality, manually reviewed Swiss-Prot protein entries.
 - **Loading:** Loaded automatically in Python using the Hugging Face `datasets` library. No manual downloads or local CSV files are required.
-- **Splits:** Pre-defined dataset splits (`train`, `dev`, `test`) are combined, cleaned, deduplicated, and re-partitioned into a standardized **70% Train / 15% Validation / 15% Test** stratified split.
-
----
-
+- **Splits:** Pre-defined dataset splits (`train`, `dev`, `test`) are combined, cleaned, deduplicated, and re-partitioned into a standardized 70% Train / 15% Validation / 15% Test stratified split.
 
 
 ##  Pipeline Architecture Detailed Breakdow
@@ -80,7 +72,6 @@ The notebook (`enzyme_classification_colab.ipynb`) is structured into 17 clear, 
 17. **Section 17 — Error Analysis & Conclusion**
     - Analyzes frequent misclassification pairs (e.g., Transferases vs. Hydrolases) and summarizes final model selection and key takeaways.
 
----
 
 ##  Key Design Decisions & Optimizations
 
@@ -89,8 +80,6 @@ The notebook (`enzyme_classification_colab.ipynb`) is structured into 17 clear, 
 - **Handling Class Imbalance:** Certain enzyme classes (such as Hydrolases and Transferases) appear much more frequently than Lyases or Isomerases. `class_weight='balanced'` and stratified splitting ensure minority classes are not penalized or neglected.
 - **Feature Scaling:** `StandardScaler` is fitted exclusively on the training partition and applied to validation/test sets to prevent data leakage while maintaining convergence for SVM and logistic meta-learners.
 - **Stacking Meta-Learner:** A regularized `LogisticRegression` meta-classifier is chosen to combine predicted probability distributions smoothly without overfitting.
-
----
 
 ## Evaluation Metrics
 
@@ -101,17 +90,3 @@ Because enzyme classes are naturally imbalanced, standard accuracy alone can be 
   - **Matthews Correlation Coefficient (MCC)** (balanced metric sensitive to true/false positives and negatives across all classes).
   - **Macro Precision & Macro Recall**.
   - **ROC-AUC (One-vs-Rest)** (discriminative ability per enzyme class).
-
----
-
-## Generated Visualizations
-
-Running the notebook produces and saves several publication-quality figures:
-
-- `class_distribution.png`: Bar and pie charts detailing the distribution of EC classes 1 through 6.
-- `confusion_matrices.png`: Normalized confusion matrices for all base and ensemble models.
-- `roc_curves.png`: One-vs-Rest ROC curves with per-class and macro-average AUC scores.
-- `feature_importance.png`: Top-ranking biochemical features ranked by tree-based feature importance.
-- `model_comparison.png`: Side-by-side performance comparison of base models vs. voting and stacking ensembles.
-
----
