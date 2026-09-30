@@ -8,14 +8,14 @@ A complete machine learning pipeline for predicting the primary Enzyme Commissio
 
 Enzymes are biological catalysts essential for metabolic and biochemical processes. The Enzyme Commission (EC) hierarchical numerical classification categorizes enzymes into six primary functional classes based on the chemical reactions they catalyze:
 
-| EC Class | Class Name | Description |
+| EC Class | Class Name | 
 |:---:|:---|:---|
-| **EC 1** | **Oxidoreductases** | Catalyze oxidation-reduction reactions (electron transfer) |
-| **EC 2** | **Transferases** | Catalyze transfer of functional groups (e.g., methyl, phosphate) |
-| **EC 3** | **Hydrolases** | Catalyze cleavage of bonds by addition of water (hydrolysis) |
-| **EC 4** | **Lyases** | Catalyze cleavage of bonds by means other than hydrolysis/oxidation |
-| **EC 5** | **Isomerases** | Catalyze geometric or structural changes within a single molecule |
-| **EC 6** | **Ligases** | Catalyze joining of two molecules coupled with ATP hydrolysis |
+| **EC 1** | **Oxidoreductases** | 
+| **EC 2** | **Transferases** | 
+| **EC 3** | **Hydrolases** | 
+| **EC 4** | **Lyases** | 
+| **EC 5** | **Isomerases** | 
+| **EC 6** | **Ligases** | 
 
 The goal of this project is to build an end-to-end, reproducible classifier capable of accurately determining the top-level EC class from raw primary protein sequences.
 
